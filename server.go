@@ -1,7 +1,10 @@
 package main
 
-import "github.com/gin-gonic/gin"
-
+import (
+	"github.com/gin-gonic/gin"
+	"gin-server/db"
+	
+)
 
 //Connet Db
 func ConnectToDb()
