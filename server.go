@@ -1,20 +1,23 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"gin-server/db"
-	
-)
 
-//Connet Db
-func ConnectToDb()
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	r := gin.Default() //router 생성
+	db.Connect()
+	
+	// result := db.DbQuery(db1, query)
+	// print(result)
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.Run() // listen and serve on 0.0.0.0:3030 (for windows "localhost:3030")
+
 }

@@ -2,19 +2,27 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
+
 	_ "github.com/go-sql-driver/mysql"
-	"log"
-	"fmt"]]]''
-	]]\\]\]
-	ioiiuuuuuuhfmt vg5o
 )
 
+//Db에 접속하여 인서트를 하는 함수.
 func Connect() {
-    db, err := sql.Open("mysql", "root:pwd@tcp(127.0.0.1:3306)/testdb")
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer db.Close()
-     
-    //...(db 사용)....
+	fmt.Println("Go MySQL Tutorial")
+
+	db, err := sql.Open("mysql", "root:1234@tcp(127.0.0.1:3306)/study_db")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	defer db.Close()
+
+	insert, err := db.Query("INSERT INTO user (name, id, pw) VALUES ('배태현', 'baetaehyeon', '040809')")
+
+	if err != nil {
+		panic(err.Error())
+	}
+	defer insert.Close()
 }
