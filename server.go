@@ -9,9 +9,8 @@ import (
 func main() {
 	r := gin.Default() //router 생성
 	db.Connect()
-	
-	// result := db.DbQuery(db1, query)
-	// print(result)
+
+
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
