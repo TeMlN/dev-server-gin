@@ -10,33 +10,23 @@ import (
 var Conf Config
 
 type Config struct {
-	APP      app
-	Database database
-	Format   format
+	Database Database `toml:"database"`
 }
 
-type database struct {
-	User     string
-	Password string
-	Server   string
-	Port     string
-	Engine   string
-	Database string
+type Database struct {
+	User     string `toml:"user"`
+	Password string `toml:"password"`
+	Server   string `toml:"server"`
+	Port     string `toml:"port"`
+	Engine   string `toml:"engine"`
+	Database string `toml:"database"`
 }
 
-type format struct {
-	Format string
-}
-
-type app struct {
-	Name string `toml:"name"`
-}
-
-func StartConfig() {
+func InitConfig() {
 	_, err := toml.DecodeFile("./config.toml", &Conf)
-	err != nil {
+	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%#v\n", Conf)
+	fmt.Println(Conf)
 
 }
