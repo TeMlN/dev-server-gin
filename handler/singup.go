@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,5 +14,18 @@ type SignReq struct {
 
 func SignUp(c *gin.Context) {
 	s := new(SignReq)
+
+	if err := c.Bind(s); err != nil {
+		return
+	}
+
+	fmt.Println(s.Id, s.Email, s.Pwd)
+
+	if s.Id == "" || s.Email == "" || s.Pwd == "" {
+		c.JSON(400, gin.H{
+			"status":  400,
+			"message": "모든값을 입력해주세요.",
+		})
+	}
 
 }
